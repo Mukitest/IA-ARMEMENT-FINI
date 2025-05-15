@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="Logo-Projet-Web-removebg-preview.png">
+    <title> Gestion des utilisateurs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #1f1f1f;
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            color: #66ff66;
+        }
+
+        .logout-btn {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .logout-btn:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #66ff66;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+        }
+
+        .btn-modify {
+            background-color: #4CAF50;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+        }
+
+        .btn-modify:hover, .btn-delete:hover {
+            opacity: 0.8;
+        }
+
+        .btn-clear {
+            background-color: #ff9800;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-export {
+            background-color: #673ab7;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit {
+            background-color: #008CBA;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-submit:hover, .btn-clear:hover, .btn-export:hover {
+            opacity: 0.8;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .search-container input, .search-container select {
+            width: 45%;
+        }
+
+        .notification {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>👥 Gestion des utilisateurs</h1>
+        <button class="logout-btn" onclick="logout()">🔒 Se déconnecter</button>
+    </div>
+
+    <div class="container">
+
+        <h2>➕ Ajouter un utilisateur</h2>
+        <form id="user-form">
+            <input type="text" id="first-name" placeholder="👤 Prénom" required>
+            <input type="text" id="last-name" placeholder="👤 Nom" required>
+            <input type="email" id="email" placeholder="📧 Email" required>
+            <input type="tel" id="phone" placeholder="📱 Téléphone" required>
+            <select id="role">
+                <option value="Utilisateur">👥 Utilisateur</option>
+                <option value="Admin">🛡️ Admin</option>
+            </select>
+            <button type="submit" class="btn btn-submit">✅ Ajouter un utilisateur</button>
+        </form>
+
+        <div class="search-container">
+            <input type="text" id="search-name" placeholder="🔍 Rechercher par nom..." oninput="filterUsers()">
+            <select id="filter-role" onchange="filterUsers()">
+                <option value="">🗂️ Filtrer par rôle</option>
+                <option value="Utilisateur">👥 Utilisateur</option>
+                <option value="Admin">🛡️ Admin</option>
+            </select>
+        </div>
+
+        <h2>📋 Liste des utilisateurs</h2>
+        <button class="btn btn-clear" onclick="sortUsersByName()">🔤 Trier par nom</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>👤 Prénom</th>
+                    <th>👤 Nom</th>
+                    <th>📧 Email</th>
+                    <th>📱 Téléphone</th>
+                    <th>🔐 Rôle</th>
+                    <th>⚙️ Actions</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body"></tbody>
+        </table>
+
+        <button class="btn btn-export" onclick="exportToPDF()">📄 Exporter en PDF</button>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let editingUserId = null;
+
+        updateUserTable();
+
+        document.getElementById("user-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const role = document.getElementById("role").value;
+
+            const cleanedPhone = phone.replace(/[^\d]/g, '');
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailRegex.test(email)) {
+                alert("⚠️ Veuillez entrer un email valide.");
+                return;
+            }
+
+            const user = {
+                id: editingUserId || (users.length ? Math.max(...users.map(u => u.id)) + 1 : 1),
+                firstName,
+                lastName,
+                email,
+                phone: cleanedPhone,
+                role
+            };
+
+            if (editingUserId) {
+                const index = users.findIndex(u => u.id === editingUserId);
+                if (index !== -1) {
+                    users[index] = user;
+                }
+                editingUserId = null;
+            } else {
+                users.push(user);
+            }
+
+            localStorage.setItem("users", JSON.stringify(users));
+            updateUserTable();
+            showNotification("✅ Utilisateur ajouté/modifié avec succès!");
+            resetForm();
+        });
+
+        function resetForm() {
+            document.getElementById("user-form").reset();
+        }
+
+        function updateUserTable() {
+            const tableBody = document.getElementById("user-table-body");
+            tableBody.innerHTML = "";
+            users.forEach(user => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.role}</td>
+                    <td class="actions">
+                        <button class="btn btn-modify" onclick="modifyUser(${user.id})">✏️ Modifier</button>
+                        <button class="btn btn-delete" onclick="deleteUser(${user.id})">🗑️ Supprimer</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function modifyUser(id) {
+            const user = users.find(u => u.id === id);
+            if (user) {
+                document.getElementById("first-name").value = user.firstName;
+                document.getElementById("last-name").value = user.lastName;
+                document.getElementById("email").value = user.email;
+                document.getElementById("phone").value = user.phone;
+                document.getElementById("role").value = user.role;
+                editingUserId = id;
+            }
+        }
+
+        function deleteUser(id) {
+            users = users.filter(user => user.id !== id);
+            localStorage.setItem("users", JSON.stringify(users));
+            updateUserTable();
+            showNotification("🗑️ Utilisateur supprimé avec succès!");
+        }
+
+        function filterUsers() {
+            const searchTerm = document.getElementById("search-name").value.toLowerCase();
+            const filterRole = document.getElementById("filter-role").value;
+            const filteredUsers = users.filter(user => {
+                const matchesSearch = user.firstName.toLowerCase().includes(searchTerm) || user.lastName.toLowerCase().includes(searchTerm);
+                const matchesRole = !filterRole || user.role === filterRole;
+                return matchesSearch && matchesRole;
+            });
+            updateTableWithFilteredData(filteredUsers);
+        }
+
+        function updateTableWithFilteredData(filteredUsers) {
+            const tableBody = document.getElementById("user-table-body");
+            tableBody.innerHTML = "";
+            filteredUsers.forEach(user => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.role}</td>
+                    <td class="actions">
+                        <button class="btn btn-modify" onclick="modifyUser(${user.id})">✏️ Modifier</button>
+                        <button class="btn btn-delete" onclick="deleteUser(${user.id})">🗑️ Supprimer</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function sortUsersByName() {
+            users.sort((a, b) => a.firstName.localeCompare(b.firstName));
+            updateUserTable();
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            setTimeout(() => notification.style.display = "none", 3000);
+        }
+
+        function logout() {
+            const notification = document.getElementById("notification");
+            notification.textContent = "🔒 Vous vous êtes déconnecté. À plus tard !";
+            notification.style.display = "block";
+
+            setTimeout(() => {
+                window.location.href = "test.html";
+            }, 1000);
+        }
+
+        async function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Liste des utilisateurs", 10, 10);
+            let y = 20;
+            users.forEach(user => {
+                const line = `ID: ${user.id} | ${user.firstName} ${user.lastName} | ${user.email} | ${user.phone} | ${user.role}`;
+                doc.text(line, 10, y);
+                y += 10;
+            });
+            doc.save("Utilisateur.pdf");
+        }
+    </script>
+</body>
+</html>

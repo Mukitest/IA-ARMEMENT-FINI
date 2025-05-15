@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA dans l'Armement</title>
+    <link rel="icon" type="image/x-icon" href="Logo-Projet-Web-removebg-preview.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #f4f4f9;
+        }
+        header {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1rem;
+        }
+        .btn-toggle {
+            background-color: #34495E;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-toggle:hover {
+            background-color: #2C3E50;
+        }
+        .navbar {
+            margin-bottom: 30px;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 15px;
+        }
+        .navbar-brand {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .navbar-toggler {
+            background-color: #34495E;
+        }
+        .navbar-nav .nav-link {
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #FFA500 !important;
+            border-bottom: 2px solid #FFA500;
+        }
+        .container {
+            padding: 0 15px;
+        }
+        .blog-section img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .blog-text {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s, background-color 0.3s, color 0.3s;
+            min-height: 350px;
+        }
+        .blog-text:hover {
+            transform: translateY(-8px);
+        }
+        .blog-section:first-of-type {
+            margin-top: 40px;
+        }
+        .blog-text:nth-child(1) {
+            background-color: #f9f9f9;
+        }
+        .blog-text:nth-child(2) {
+            background-color: #f1f1f1;
+        }
+        .blog-text:nth-child(3) {
+            background-color: #e9e9e9;
+        }
+        .blog-text.dark-mode {
+            background-color: #2C3E50;
+            color: #f4f4f9;
+        }
+        .blog-text:nth-child(1).dark-mode {
+            background-color: #34495E;
+        }
+        .blog-text:nth-child(2).dark-mode {
+            background-color: #2C3E50;
+        }
+        .blog-text:nth-child(3).dark-mode {
+            background-color: #1A242F;
+        }
+        .cta-button {
+            background-color: #3498DB;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #2980B9;
+        }
+        footer {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .read-more {
+            display: none;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 0.9rem;
+            }
+            .navbar-nav .nav-item {
+                margin-right: 10px;
+            }
+            .blog-text {
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            .blog-section img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="Home.html">
+                <img src="Logo-Projet-Web-removebg-preview.png" alt="Logo" style="width: 80px; height: 80px; margin-right: 10px; vertical-align: middle;">
+                IA & Armement
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Volmy.html">
+                            <i class="fas fa-cogs"></i> Types d'utilisation de l'IA
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Facri.html">
+                            <i class="fas fa-shield-alt"></i> Avantages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Daniel.html">
+                            <i class="fas fa-exclamation-triangle"></i> Risques
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Mukilan.html">
+                            <i class="fas fa-globe"></i> Réglementation
+                        </a>
+                    </li>
+                </ul>
+                <button class="btn-toggle ms-3" id="mode-toggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Réglementation et débats internationaux</h1>
+        <p id="date-time"></p>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <!-- Première Section -->
+            <div class="col-md-4">
+                <div class="blog-section">
+                    <div class="blog-text" id="section1Container">
+                        <h2>Une réglementation controversée</h2>
+                        <img src="laws_debate.jpg" alt="Réglementation des armes autonomes">
+                        <p>Les armes autonomes, appelées <strong>LAWS</strong> (<strong>Lethal Autonomous Weapon Systems</strong>), sont au cœur des débats internationaux. Ces systèmes sont conçus pour prendre des décisions de manière autonome, sans intervention humaine. L'absence de responsabilité claire en cas de défaillance ou d'erreur pose une problématique éthique majeure.</p>
+                        <p>Les partisans de l'IA dans l'armement affirment que cela permettrait de minimiser les pertes humaines et d'améliorer l'efficacité sur le terrain. Cependant, des voix s'élèvent pour dénoncer le risque d'ériger un système où des machines pourraient prendre des décisions cruciales concernant la vie humaine, sans aucune possibilité de recours.</p>
+                        <button class="cta-button" onclick="toggleContent('section1')">Lire plus 🔽</button>
+                        <div id="section1" class="read-more">
+                            <p><strong>La réglementation</strong> des armes autonomes pose des questions complexes sur la responsabilité en cas de mauvais usage ou de catastrophes humaines. Des experts soulignent également le risque de prolifération de ces technologies, notamment dans les zones de conflits où les normes éthiques sont souvent mises de côté au profit de la supériorité militaire.</p>
+                            <a href="#" class="cta-button" onclick="toggleContent('section1')">Retour ↩️</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deuxième Section -->
+            <div class="col-md-4">
+                <div class="blog-section">
+                    <div class="blog-text" id="section2Container">
+                        <h2>Des pays divisés</h2>
+                        <img src="geo_politics.jpg" alt="Pays Divisés">
+                        <p>Les discussions sur l'utilisation des IA dans l'armement sont marquées par des divergences profondes entre les nations. Alors que des pays comme la Chine et la Russie investissent massivement dans les armes autonomes, d'autres, comme les membres de l'Union Européenne, appellent à une réglementation stricte, voire à une interdiction de ces systèmes.</p>
+                        <p>Le principal obstacle à un consensus mondial est la crainte qu'un moratoire sur les armes autonomes puisse limiter la compétitivité militaire de certains pays. L'idée que certaines nations pourraient abandonner le développement de ces armes alors que d'autres poursuivent leurs recherches est un scénario que beaucoup considèrent comme dangereusement déséquilibré.</p>
+                        <button class="cta-button" onclick="toggleContent('section2')">Lire plus 🔽</button>
+                        <div id="section2" class="read-more">
+                            <p><strong>Des débats</strong> ont lieu dans des forums tels que l'ONU, mais les résolutions semblent rarement aboutir à des mesures concrètes. Les enjeux sont trop importants, et la pression des lobbies militaires et industriels reste un frein majeur à toute avancée significative.</p>
+                            <a href="#" class="cta-button" onclick="toggleContent('section2')">Retour ↩️</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troisième Section -->
+            <div class="col-md-4">
+                <div class="blog-section">
+                    <div class="blog-text" id="section3Container">
+                        <h2>Les risques à long terme</h2>
+                        <img src="future_risks.jpg" alt="Risques à long terme">
+                        <p><strong>Les risques à long terme</strong> sont encore inconnus, mais les scientifiques et les analystes militaires sont unanimes sur un point : une réglementation internationale est essentielle pour minimiser les dangers liés aux armes autonomes. Cela pourrait inclure des interdictions claires sur leur usage dans certains contextes, ainsi qu'une surveillance accrue de leur développement.</p>
+                        <button class="cta-button" onclick="toggleContent('section3')">Lire plus 🔽</button>
+                        <div id="section3" class="read-more">
+                            <p><strong>Les armes autonomes</strong> pourraient avoir des conséquences imprévisibles, notamment en ce qui concerne l'escalade des conflits ou les erreurs de ciblage. Des chercheurs ont mis en garde contre la possibilité que ces armes échappent à tout contrôle humain, créant des situations potentiellement catastrophiques.</p>
+                            <a href="#" class="cta-button" onclick="toggleContent('section3')">Retour ↩️</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 IA et Armement | Tous droits réservés</p>
+    </footer>
+
+    <script>
+        document.getElementById('mode-toggle').addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+            var sections = document.querySelectorAll('.blog-text');
+            sections.forEach(function (section) {
+                section.classList.toggle('dark-mode');
+            });
+        });
+
+        // Function to toggle content for "Lire plus"
+        function toggleContent(section) {
+            var content = document.getElementById(section);
+            var button = document.querySelector("#" + section + "Container .cta-button");
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            button.innerHTML = content.style.display === 'block' ? 'Lire moins' : 'Lire plus';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

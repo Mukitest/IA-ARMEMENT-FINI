@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA dans l'Armement</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="Logo-Projet-Web-removebg-preview.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #f4f4f9;
+        }
+        header {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.1rem;
+        }
+        .team-intro {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .team-intro img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .team-intro img:hover {
+            transform: scale(1.1);
+        }
+        .team-intro h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .team-intro p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        .btn-toggle {
+            background-color: #34495E;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-toggle:hover {
+            background-color: #2C3E50;
+        }
+        .navbar {
+            margin-bottom: 40px;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+        }
+        .navbar-brand {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .navbar-toggler {
+            background-color: #34495E;
+        }
+        .navbar-nav .nav-link {
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f39c12;
+        }
+        .container {
+            padding: 0 15px;
+        }
+        footer {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            display: block;
+            animation: fadeIn 3s ease-in-out forwards;
+            z-index: 9999;
+        }
+        .notification .close-btn {
+            color: white;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .notification .close-btn:hover {
+            color: #f39c12;
+            border-bottom: 2px solid #FFA500;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .background-blur {
+            background-image: url('background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #f39c12 !important;
+            border-bottom: 2px solid #FFA500;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="background-blur"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <button class="close-btn" id="close-notification">&times;</button>
+        <i class="fas fa-info-circle"></i> Bienvenue sur notre site, l'équipe MDFV vous dit la bienvenue !
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="Home.html">
+                <img src="Logo-Projet-Web-removebg-preview.png" alt="Logo" style="width: 80px; height: 80px; margin-right: 10px; vertical-align: middle;">
+                IA & Armement
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Volmy.html"><i class="fas fa-cogs"></i> Types d'utilisation de l'IA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Facri.html"><i class="fas fa-shield-alt"></i> Avantages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Daniel.html"><i class="fas fa-exclamation-triangle"></i> Risques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Mukilan.html"><i class="fas fa-globe"></i> Réglementation</a></li>
+                    
+                </ul>
+                <button class="btn-toggle ms-3" id="mode-toggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Le Rôle de l'IA dans l'Armement</h1>
+        <p>Découvrez comment les intelligences artificielles transforment le domaine de la défense et de l'armement.</p>
+        <div class="team-intro">
+            <img src="CODMWGroup_feat.jpg" alt="Image de l'équipe">
+            <h3>Bienvenue sur notre site !</h3>
+            <p>Nous sommes l'équipe derrière ce projet.</p>
+            <div >
+                <div class="card" style="width: 15rem; align-items: center; background-color: beige; color: #121212;"  >
+                    <img src="/Tkt.jpg" class="card-img-top" >
+                    <div class="card-body" style="align-items: center; flex-direction: column;">
+                      <h5 class="card-title">Mukilan - Chef de projet 📅</h5>
+                      <p class="card-text" style="color: #121212;">Responsable de la gestion et coordination du projet.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      
+                    </ul>
+                    
+                    </div>
+                  </div>
+        
+                <h4>Facridine - Porte-parole 🎤</h4>
+                <p>Chargée de la communication et des relations publiques.</p>
+                <h4>Daniel - Expert Figma 🎨</h4>
+                <p>Créateur des designs et maquettes sur Figma.</p>
+                <h4>Volmy - Expert en HTML & CSS 💻</h4>
+                <p>Développeur front-end, spécialisé dans le HTML et CSS.</p>
+            </div>
+
+            <div class="card" style="width: 15rem; align-items: center; background-color: beige; color: #121212;"  >
+                <img src="/Tkt.jpg" class="card-img-top" >
+                <div class="card-body">
+                  <h5 class="card-title">Mukilan - Chef de projet 📅</h5>
+                  <p class="card-text" style="color: #121212;">Responsable de la gestion et coordination du projet.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  
+                </ul>
+                
+                </div>
+              </div>
+        </div>
+        <p id="date-time"></p>
+    </header>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 IA et Armement - Tous droits réservés</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        const blogTexts = document.querySelectorAll('.blog-text');
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            blogTexts.forEach(text => text.classList.toggle('dark-mode'));
+
+            modeToggle.innerHTML = body.classList.contains('dark-mode') ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+        });
+
+        function updateDateTime() {
+            const dateTime = new Date();
+            const dateString = dateTime.toLocaleString();
+            document.getElementById("date-time").innerHTML = dateString;
+        }
+
+        setInterval(updateDateTime, 1000);
+
+        document.getElementById("close-notification").addEventListener("click", () => {
+            document.getElementById("notification").style.display = 'none';
+        });
+    </script>
+</body>
+</html>

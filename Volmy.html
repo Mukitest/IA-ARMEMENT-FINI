@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Types d'utilisation de l'IA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="Logo-Projet-Web-removebg-preview.png">
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+ 
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+ 
+    .light-mode {
+      background-color: #f4f4f9;
+      color: #333;
+    }
+ 
+    .dark-mode {
+      background-color: #121212;
+      color: #f4f4f9;
+    }
+ 
+    header {
+      background-color: #2C3E50;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+ 
+    header h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+ 
+    .btn-toggle {
+      background-color: #34495E;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+ 
+    .btn-toggle:hover {
+      background-color: #2C3E50;
+    }
+ 
+    .content-section {
+      padding: 60px 20px;
+    }
+ 
+    footer {
+      background-color: #2C3E50;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+      margin-top: auto;
+    }
+ 
+    .bg-custom {
+      background-color: #2C3E50;
+    }
+ 
+    .hover-effect:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+ 
+    .card-title.text-white,
+    .card-text.text-white {
+      color: white;
+    }
+ 
+    .card-text.small {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+ 
+    .card-img-top {
+      max-height: 180px;
+      object-fit: cover;
+    }
+ 
+   
+    .navbar-dark .navbar-nav .nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+ 
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #f39c12 !important;
+      border-bottom: 2px solid #FFA500;
+    }
+  </style>
+</head>
+<body class="light-mode">
+ 
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="Home.html">
+        <img src="Logo-Projet-Web-removebg-preview.png" alt="Logo" style="width: 80px; height: 80px; margin-right: 10px; vertical-align: middle;">
+        IA & Armement
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="Home.html"><i class="fas fa-home"></i> Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="Volmy.html"><i class="fas fa-cogs"></i> Types d'utilisation de l'IA</a></li>
+          <li class="nav-item"><a class="nav-link" href="Facri.html"><i class="fas fa-shield-alt"></i> Avantages</a></li>
+          <li class="nav-item"><a class="nav-link" href="Daniel.html"><i class="fas fa-exclamation-triangle"></i> Risques</a></li>
+          <li class="nav-item"><a class="nav-link" href="Mukilan.html"><i class="fas fa-globe"></i> Réglementation</a></li>
+        </ul>
+        <button class="btn-toggle ms-3" id="mode-toggle"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- Header -->
+  <header>
+    <h1>Types d'utilisation de l'IA</h1>
+  </header>
+ 
+  <!-- Contenu -->
+  <div class="container content-section">
+    <div class="row g-4">
+ 
+      <!-- Bloc 1 -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 hover-effect bg-custom">
+          <img src="Image (2).png" class="card-img-top">
+          <div class="card-body p-3">
+            <h5 class="card-title text-white text-center">Systèmes d’armes autonomes</h5>
+            <p class="card-text mb-2 text-white">Les armes autonomes utilisent l’IA pour prendre des décisions critiques en temps réel, 
+                parfois sans intervention humaine. Une révolution technologique qui soulève autant de fascination que de préoccupations.</p>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#collapse1" role="button">Ça m'intéresse ! 🔽</a>
+            <div class="collapse mt-2" id="collapse1">
+              <p class="card-text small text-white">
+              🔍 : Les systèmes d’armes autonomes sont des technologies militaires capables de fonctionner sans intervention humaine directe. 
+              Cela veut dire qu’une fois activés, ces systèmes peuvent :
+              Détecter une cible,
+              L’identifier à partir de critères prédéfinis (comportement, chaleur corporelle, signature radar…),
+              Décider de l’attaquer, c’est-à-dire tirer ou lancer un missile par eux-mêmes.
+              Tout cela est rendu possible grâce à des algorithmes d’intelligence artificielle et du machine learning, qui leur permettent d’apprendre à reconnaître des menaces ou de prendre des décisions en situation de combat.              
+              <br><br>
+              ⚖️ : Pourquoi ça pose problème ?<br>
+              L’aspect éthique et juridique vient du fait que la vie ou la mort d’un être humain pourrait dépendre d’un algorithme, et non d’un humain. Cela soulève plusieurs questions :
+              Qui est responsable si la machine se trompe ? (ex. : elle attaque un civil au lieu d’un soldat)
+              Est-ce moral de laisser une machine décider de tuer ?
+              Peut-on garantir que ces systèmes respecteront le droit international humanitaire ?
+              Qu’arrive-t-il s’ils tombent entre de mauvaises mains ou sont piratés ?
+            </p>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Bloc 2 -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 hover-effect bg-custom">
+          <img src="Image (3).png" class="card-img-top">
+          <div class="card-body p-3">
+            <h5 class="card-title text-white text-center">Surveillance et reconnaissance assistées par IA</h5>
+            <p class="card-text mb-2 text-white">Grâce à l’IA, les armées peuvent analyser instantanément des flux massifs de données, 
+                détecter des menaces invisibles à l’œil humain et gagner un temps précieux sur le terrain.</p>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#collapse2" role="button ">Ça m'intéresse ! 🔽</a>
+            <div class="collapse mt-2" id="collapse2">
+              <p class="card-text small text-white">
+              🔍 : Surveillance et reconnaissance assistées par IA
+              Aujourd’hui, les armées utilisent de plus en plus l’intelligence artificielle pour collecter, trier et analyser d’énormes quantités d’informations en temps réel. Ces données peuvent venir de :
+              Caméras de surveillance, satellites ou drones,
+              Capteurs thermiques, radars, microphones,
+              Réseaux sociaux ou communications interceptées.
+              <br>
+              <br>
+              🧠 : Ce que fait l’IA concrètement :
+              Elle détecte des mouvements suspects ou anormaux automatiquement,
+              Elle peut reconnaître des visages, des véhicules, ou des schémas de comportement,
+              Elle priorise les menaces pour que les soldats ou analystes humains n’aient à se concentrer que sur l’essentiel.
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Bloc 3 -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 hover-effect bg-custom">
+          <img src="Image.png" class="card-img-top">
+          <div class="card-body p-3">
+            <h5 class="card-title text-white text-center">Cybersécurité et guerre électronique</h5>
+            <p class="card-text mb-2 text-white">L’IA devient un acteur clé dans les conflits numériques. 
+                Elle renforce les défenses informatiques et peut même mener des cyberattaques ciblées avec une rapidité redoutable.</p>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#collapse3" role="button">Ça m'intéresse ! 🔽</a>
+            <div class="collapse mt-2" id="collapse3">
+              <p class="card-text small text-white">
+              🔍 : Cybersécurité et guerre électronique avec l’IA
+              Les conflits ne se jouent plus seulement sur les champs de bataille physiques. 
+              Aujourd’hui, une grande partie des attaques se passent dans le cyberespace : réseaux, serveurs, systèmes de défense… Et l’intelligence artificielle y joue un rôle de plus en plus central.   
+              <br><br>
+              🛡️ : Comment l’IA protège ?<br>
+              L’IA peut :
+              <li class="text-white">Détecter des cyberattaques en cours en analysant les comportements inhabituels sur un réseau,</li>
+              <li class="text-white">Bloquer automatiquement les connexions ou logiciels suspects,</li>
+              <li class="text-white">Corriger ou isoler les systèmes compromis avant que les dégâts ne s’aggravent.</li>
+              <br>
+              <p class="card-text small text-white">⚔️ : Et en attaque ?<br>
+L’IA ne fait pas que défendre. Elle peut aussi être utilisée pour :
+<li class="text-white">Lancer des cyberattaques ciblées, par exemple contre des infrastructures ennemies (réseaux électriques, satellites, systèmes de communication),</li>
+<li class="text-white">Trouver automatiquement des failles de sécurité à exploiter,</li>
+<li class="text-white">Créer des malwares intelligents capables de s’adapter et d’échapper aux antivirus classiques.</li>
+
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Bloc 4 -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 hover-effect bg-custom">
+          <img src="Image (1).png" class="card-img-top">
+          <div class="card-body p-3">
+            <h5 class="card-title text-white text-center">Optimisation logistique et stratégique</h5>
+            <p class="card-text mb-2 text-white">Du ravitaillement aux décisions tactiques, l’IA transforme la gestion militaire en un système ultra-réactif, 
+                capable de s’adapter rapidement aux imprévus du champ de bataille.</p>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#collapse4" role="button">Ça m'intéresse ! 🔽</a>
+            <div class="collapse mt-2" id="collapse4">
+              <p class="card-text small text-white">
+                🔍 : Dans une armée, tout ne tourne pas uniquement autour du combat. Une grande partie du succès repose sur la logistique : 
+                savoir où envoyer les troupes, comment les ravitailler, ou quand attaquer ou se replier. L’IA intervient ici pour rendre tout ça plus rapide, plus intelligent et plus fiable.
+                <br><br>
+                🚚 : Ce que l’IA améliore 
+              <li class="text-white"><b>Ravitaillement automatique</b> : elle calcule les besoins en munitions, nourriture, carburant… et optimise les trajets pour que tout arrive au bon moment, au bon endroit.</li>
+              <li class="text-white"><b>Maintenance prédictive</b> : l’IA peut anticiper les pannes sur les véhicules, avions, ou équipements avant même qu’elles se produisent.</li>
+              <li class="text-white"><b>Planification tactique</b> : en analysant des données terrain en temps réel (météo, position ennemie, ressources disponibles), l’IA peut suggérer des plans d’action plus efficaces.</li>
+                <br>
+                <p class="card-text small text-white">🧠 : <b>Décisions stratégiques assistées.</b>
+              L’IA est aussi capable de simuler des scénarios de guerre pour aider les officiers à prendre des décisions critiques. 
+              Elle peut tester des milliers de possibilités en quelques secondes, ce qui donne un avantage considérable en matière de préparation et d’adaptation.
+            </p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+  <div class="container content-section">
+  <div class="row g-4">
+ 
+    <!-- Bloc 1 : Des machines qui décident de la vie ou de la mort -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 hover-effect bg-custom">
+        <div class="card-body p-3">
+          <h5 class="card-title text-white"><b>📌En résumé: Optimisation logistique et stratégique</b></h5><br>
+          <p class="card-text text-white small text-center">
+            Ces systèmes sont très puissants technologiquement, mais leur utilisation touche à des limites fondamentales sur le contrôle humain en temps de guerre. 
+            Beaucoup d’experts et d’ONG demandent même un moratoire ou une interdiction de leur usage.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Bloc 2 : Risque de prolifération et d’instabilité mondiale -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 hover-effect bg-custom">
+        <div class="card-body p-3">
+          <h5 class="card-title text-white"><b>📌En résumé: Systèmes d’armes autonomes</b></h5><br>
+          <p class="card-text text-white small text-center">
+            L’intelligence artificielle permet aux armées d’analyser d’immenses volumes de données (images, sons, signaux) en temps réel. 
+            Grâce à elle, il est possible de repérer des menaces invisibles à l’œil humain, de suivre des cibles avec précision et de réagir plus vite sur le terrain. 
+            L’IA devient ainsi un outil stratégique pour anticiper les dangers et gagner un temps précieux en opération.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Bloc 3 : Biais algorithmiques et discrimination -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 hover-effect bg-custom">
+        <div class="card-body p-3">
+          <h5 class="card-title text-white"><b>📌En résumé: Cybersécurité et guerre électronique</b></h5><br>
+          <p class="card-text text-white small text-center">
+            L’IA permet aux armées de mener une guerre numérique plus rapide, 
+            plus précise et plus invisible. Mais cette puissance soulève aussi des risques, 
+            comme la perte de contrôle ou les attaques entre puissances rivales.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Bloc 4 : Perte du contrôle humain -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100 hover-effect bg-custom">
+        <div class="card-body p-3">
+          <h5 class="card-title text-white"><b>📌En résumé: Optimisation logistique et stratégique</b></h5><br>
+          <p class="card-text text-white small text-center">
+            L’IA transforme l’armée en une machine ultra-réactive et adaptable, capable de gérer des situations complexes en un minimum de temps. Un vrai atout pour anticiper l’imprévu… et garder l’ascendant.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Bloc 5 : Appel à une réglementation urgente -->
+    <div class="col-md-">
+      <div class="card shadow-sm h-100 hover-effect bg-custom">
+        <div class="card-body p-3">
+          <h5 class="card-title text-white text-center" > <b>❓Problématique :</b></h5>
+          <p class="card-text text-white small text-center">
+            Comment l’utilisation croissante de l’intelligence artificielle dans l’armement transforme-t-elle les stratégies militaires tout en soulevant des enjeux éthiques, juridiques et sécuritaires majeurs ?
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</div>
+ 
+<!-- CSS pour l'effet au survol -->
+<style>
+  /* Définition de la couleur bleue pour le fond des cases */
+  .bg-custom {
+    background-color: #2C3E50; /* Même couleur que le haut de la page */
+  }
+ 
+  /* Ajout d'une animation au survol */
+  .hover-effect:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombre au survol */
+  }
+ 
+  /* Réduction de la taille des textes pour plus de lisibilité */
+  .card-text.small {
+    font-size: 0.9rem;  /* Réduit la taille du texte pour une présentation plus compacte */
+    line-height: 1.6;
+  }
+ 
+  /* Le texte des cartes est blanc */
+  .card-title.text-white,
+  .card-text.text-white {
+    color: white; /* Texte blanc */
+  }
+ 
+  /* Réajustement de la carte pour s'assurer que l'effet fonctionne bien sur tous les écrans */
+  .card {
+    transition: all 0.3s ease;
+  }
+</style>
+ 
+ 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 IA & Armement - Tous droits réservés.</p>
+  </footer>
+ 
+  <!-- Script du mode sombre -->
+  <script>
+    document.getElementById('mode-toggle').addEventListener('click', function () {
+      document.body.classList.toggle('light-mode');
+      document.body.classList.toggle('dark-mode');
+      this.querySelector('i').classList.toggle('fa-moon');
+      this.querySelector('i').classList.toggle('fa-sun');
+    });
+  </script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
